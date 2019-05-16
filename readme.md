@@ -33,12 +33,12 @@
 
 
 ## BUILDING
-###Ant
+### Ant
 build using ANT. this will create application.jar.
 
         ant dist
 
-###Using Docker
+### Using Docker
 1. docker file is also provided. build using 
     
         docker build -t uniquelist .

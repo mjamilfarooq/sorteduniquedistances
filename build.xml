@@ -140,7 +140,7 @@
     <target name="dist" depends="build.modules" description="generate the distribution">
         <buildnumber />
         <!-- Create the distribution directory -->
-        <mkdir dir="${dist}/lib" />
+<!--        <mkdir dir="${dist}/lib" />-->
 
 
         <jar destfile="application.jar" basedir="${unique_distances_list.output.dir}" >
