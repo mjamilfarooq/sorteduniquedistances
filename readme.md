@@ -33,3 +33,16 @@
 
 
 ## BUILDING
+###Ant
+build using ANT. this will create application.jar.
+
+        ant dist
+
+###Using Docker
+1. docker file is also provided. build using 
+    
+        docker build -t uniquelist .
+        
+2. run using
+        
+        docker run -it uniquelist /bin/bash
