@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_unique_distances_list" default="compile.module.unique_distances_list">
+  <dirname property="module.unique_distances_list.basedir" file="${ant.file.module_unique_distances_list}"/>
+  
+  <property name="module.jdk.home.unique_distances_list" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.unique_distances_list" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.unique_distances_list" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.unique_distances_list" value="-encoding UTF-8 -source 11 -target 11 ${compiler.args}"/>
+  
+  <property name="unique_distances_list.output.dir" value="${module.unique_distances_list.basedir}/out/production/unique_distances_list"/>
+  <property name="unique_distances_list.testoutput.dir" value="${module.unique_distances_list.basedir}/out/test/unique_distances_list"/>
+  
+  <path id="unique_distances_list.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="unique_distances_list.module.production.classpath">
+    <path refid="${module.jdk.classpath.unique_distances_list}"/>
+  </path>
+  
+  <path id="unique_distances_list.runtime.production.module.classpath">
+    <pathelement location="${unique_distances_list.output.dir}"/>
+  </path>
+  
+  <path id="unique_distances_list.module.classpath">
+    <path refid="${module.jdk.classpath.unique_distances_list}"/>
+    <pathelement location="${unique_distances_list.output.dir}"/>
+  </path>
+  
+  <path id="unique_distances_list.runtime.module.classpath">
+    <pathelement location="${unique_distances_list.testoutput.dir}"/>
+    <pathelement location="${unique_distances_list.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.unique_distances_list">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.unique_distances_list">
+    <patternset refid="excluded.from.module.unique_distances_list"/>
+  </patternset>
+  
+  <path id="unique_distances_list.module.sourcepath">
+    <dirset dir="${module.unique_distances_list.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.unique_distances_list" depends="compile.module.unique_distances_list.production,compile.module.unique_distances_list.tests" description="Compile module unique_distances_list"/>
+  
+  <target name="compile.module.unique_distances_list.production" depends="register.custom.compilers" description="Compile module unique_distances_list; production classes">
+    <mkdir dir="${unique_distances_list.output.dir}"/>
+    <javac2 destdir="${unique_distances_list.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.unique_distances_list}/javac">
+      <compilerarg line="${compiler.args.unique_distances_list}"/>
+      <bootclasspath refid="unique_distances_list.module.bootclasspath"/>
+      <classpath refid="unique_distances_list.module.production.classpath"/>
+      <src refid="unique_distances_list.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.unique_distances_list"/>
+    </javac2>
+    
+    <copy todir="${unique_distances_list.output.dir}">
+      <fileset dir="${module.unique_distances_list.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.unique_distances_list.tests" depends="register.custom.compilers,compile.module.unique_distances_list.production" description="compile module unique_distances_list; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.unique_distances_list" description="cleanup module">
+    <delete dir="${unique_distances_list.output.dir}"/>
+    <delete dir="${unique_distances_list.testoutput.dir}"/>
+  </target>
+</project>

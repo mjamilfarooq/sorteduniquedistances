@@ -23,7 +23,7 @@
 
 ### Complexity
 1. HashSet insertion is O(1).
-2. So insertion is n*O(1) will be n.
+2. So insertion is n*O(1) will be n, ignoring insertion in the list.
 3. Collection.sort must be quick sort which has average complexity of n*logn
 4. So complexity is n*logn.
 
