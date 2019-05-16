@@ -11,7 +11,8 @@ public class Main {
     static private List SortedListWithUniqueElements1(List input) throws Exception
     {
         HashSet distanceMap = new HashSet();
-        List values = (List)Class.forName(input.getClass().getName()).newInstance();
+        String listType = input.getClass().getName();
+        List values = input.getClass().getDeclaredConstructor().newInstance();
         for (Object o: input)
         {
             if(!distanceMap.add(o))
@@ -21,7 +22,6 @@ public class Main {
             }
             values.add(o);
         }
-
 
         Collections.sort(values);
         return values;
@@ -57,10 +57,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         //file from which distances to be read
-        File input = new File("datafile.txt");
+        File input = new File(args[0]);
 
         //input list for distances
-        List<Distance> inputList = new ArrayList<>();
+        List<Distance> inputList = new LinkedList<>();
 
         //populate input list with values from file, in format of space seperated
         //value<space>unit
@@ -70,14 +70,18 @@ public class Main {
                 Distance newDistance = DistanceFactory.createDistance(line);
                 inputList.add(newDistance);
             }
+
+            //Original List
+            System.out.println(inputList);
+
+            //Sorting
+            List sortedUniqueList = SortedListWithUniqueElements1(inputList);
+            System.out.println(sortedUniqueList);
         }
         catch(Exception exception)
         {
             System.out.println("error in input processing!!!" + exception.getMessage());
         }
-
-
-        System.out.println(SortedListWithUniqueElements1(inputList));
 
     }
 
